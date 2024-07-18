@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.rememberNavController
+import com.example.shoppingcartcourse.navigation.NavGraph
 import com.example.shoppingcartcourse.ui.theme.ShoppingCartCourseTheme
 
 class MainActivity : ComponentActivity() {
@@ -12,7 +15,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ShoppingCartCourseTheme {
-
+                NavGraph(
+                    navController = rememberNavController(), cartViewModel = viewModel()
+                )
             }
         }
     }

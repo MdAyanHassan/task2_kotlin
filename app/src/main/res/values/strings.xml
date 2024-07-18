@@ -4,4 +4,5 @@
     <string name="vegetables">Choose Vegetables</string>
     <string name="fruits">Choose Fruits</string>
     <string name="bill">Bill</string>
+    <string name="start">Start</string>
 </resources>
