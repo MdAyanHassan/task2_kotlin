@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedButton
@@ -47,6 +49,9 @@ fun BillScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
+                .verticalScroll(
+                    rememberScrollState()
+                )
         ) {
             Text(
                 text = "Items Summary",
@@ -65,9 +70,15 @@ fun BillScreen(
                         .align(Alignment.CenterHorizontally),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text(text = it.name)
+                    Text(
+                        text = it.name,
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
 
-                    Text(text = it.getFormattedPrice())
+                    Text(
+                        text = it.getFormattedPrice(),
+                        modifier = Modifier.padding(end = 8.dp)
+                    )
                 }
             }
 
@@ -84,11 +95,13 @@ fun BillScreen(
             ) {
                 Text(
                     text = "TOTAL",
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(start = 8.dp)
                 )
 
                 Text(
-                    text = cartUiState.total.getFormattedPrice()
+                    text = cartUiState.total.getFormattedPrice(),
+                    modifier = Modifier.padding(end = 8.dp)
                 )
             }
 
@@ -105,7 +118,9 @@ fun BillScreen(
                         resetCart()
                         navController.navigate(Screen.Home.route)
                     },
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(8.dp)
                 ) {
                     Text(text = "Cancel")
                 }
@@ -115,7 +130,9 @@ fun BillScreen(
                         resetCart()
                         navController.navigate(Screen.Home.route)
                     },
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(8.dp)
                 ) {
                     Text(text = "Submit")
                 }

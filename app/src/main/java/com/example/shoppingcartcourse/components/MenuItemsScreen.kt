@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.OutlinedButton
@@ -29,7 +31,10 @@ fun MenuItemsScreen(
 ) {
     Column(
         modifier = Modifier.fillMaxSize()
-            .padding(innerPadding),
+            .padding(innerPadding)
+            .verticalScroll(
+                rememberScrollState()
+            ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items.forEach {
@@ -53,6 +58,7 @@ fun MenuItemsScreen(
             OutlinedButton(
                 onClick = { onCancelClick() },
                 modifier = Modifier.weight(1f)
+                    .padding(8.dp)
             ) {
                 Text(text = "Cancel")
             }
@@ -60,6 +66,7 @@ fun MenuItemsScreen(
             Button(
                 onClick = { onNextClick() },
                 modifier = Modifier.weight(1f)
+                    .padding(8.dp)
             ) {
                 Text(text = "Next")
             }
@@ -89,7 +96,7 @@ fun MenuItem(
         Text(
             text = item.name,
             modifier = Modifier.padding(
-                start = 4.dp
+                start = 8.dp
             )
         )
 
@@ -98,7 +105,7 @@ fun MenuItem(
         Text(
             text = item.getFormattedPrice(),
             modifier = Modifier.padding(
-                end = 4.dp
+                end = 8.dp
             )
         )
 
