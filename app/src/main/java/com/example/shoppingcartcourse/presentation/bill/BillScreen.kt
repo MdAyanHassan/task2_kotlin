@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import com.example.shoppingcartcourse.components.CommonTopBar
 import com.example.shoppingcartcourse.core.getFormattedPrice
 import com.example.shoppingcartcourse.domain.model.CartUiState
@@ -40,7 +41,7 @@ fun BillScreen(
                 title = stringResource(id = Screen.Bill.title),
                 canNavigateBack = true,
                 onBackClick = {
-                    navController.navigate(Screen.Fruit.route)
+                    navController.navigateUp()
                 }
             )
         }
@@ -116,7 +117,12 @@ fun BillScreen(
                 OutlinedButton(
                     onClick = {
                         resetCart()
-                        navController.navigate(Screen.Home.route)
+                        navController.navigate(
+                            route = Screen.Home.route,
+                            navOptions = NavOptions.Builder()
+                                .setPopUpTo(Screen.Home.route, inclusive = false)
+                                .build()
+                        )
                     },
                     modifier = Modifier
                         .weight(1f)
@@ -128,7 +134,12 @@ fun BillScreen(
                 Button(
                     onClick = {
                         resetCart()
-                        navController.navigate(Screen.Home.route)
+                        navController.navigate(
+                            route = Screen.Home.route,
+                            navOptions = NavOptions.Builder()
+                                .setPopUpTo(Screen.Home.route, inclusive = true)
+                                .build()
+                        )
                     },
                     modifier = Modifier
                         .weight(1f)

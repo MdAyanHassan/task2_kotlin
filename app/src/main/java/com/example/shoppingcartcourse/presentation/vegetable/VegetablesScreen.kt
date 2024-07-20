@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import com.example.shoppingcartcourse.components.CommonTopBar
 import com.example.shoppingcartcourse.components.MenuItemsScreen
 import com.example.shoppingcartcourse.data.VegetableDataSource
@@ -29,7 +30,7 @@ fun VegetablesScreen(
                 title = stringResource(id = Screen.Vegetable.title),
                 canNavigateBack = true,
                 onBackClick = {
-                    navController.navigate(Screen.Home.route)
+                    navController.navigateUp()
                 }
             )
         }
@@ -42,7 +43,12 @@ fun VegetablesScreen(
             },
             onCancelClick = {
                 resetCart()
-                navController.navigate(Screen.Home.route)
+                navController.navigate(
+                    route = Screen.Home.route,
+                    navOptions = NavOptions.Builder()
+                        .setPopUpTo(Screen.Home.route, inclusive = true)
+                        .build()
+                )
             },
             onItemClick = { item, isChecked ->
 
