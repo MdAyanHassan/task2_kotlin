@@ -120,7 +120,7 @@ fun BillScreen(
                         navController.navigate(
                             route = Screen.Home.route,
                             navOptions = NavOptions.Builder()
-                                .setPopUpTo(Screen.Home.route, inclusive = false)
+                                .setPopUpTo(Screen.Home.route, inclusive = true)
                                 .build()
                         )
                     },
